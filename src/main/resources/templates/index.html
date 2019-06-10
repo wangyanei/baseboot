@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8" />
     <title>Title</title>
 </head>
+<link th:href="@{/css/bootstrap/easyui.css}"/>
 <body>
     <!--<td th:text="${user.uid}"></td>-->
 hello
-    <td th:text="${key}"></td>
+    <!--<td th:text="${key}"></td>-->
+<img th:src="@{/css/bootstrap/images/loading.gif}"/>
 </body>
+<script th:src="@{/js/jquery.min.js}"/>
+<script>
+    $(function () {
+        alert("2");
+    })
+</script>
 </html>

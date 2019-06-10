@@ -40,6 +40,8 @@ spring:
     prefix: classpath:templates/
     suffix: .html
     cache: false
+  mvc:
+    static-path-pattern: /**
   http:
     encoding:
       charset: UTF-8

@@ -27,6 +27,17 @@ public class UrlFilter implements Filter {
         XssHttpServletRequestWrapper xssHttpServletRequestWrapper=new XssHttpServletRequestWrapper(req);
         GetRequestAndReponse.setRequest(xssHttpServletRequestWrapper);
         GetRequestAndReponse.setResponse((HttpServletResponse)response);
+
+//        if(!CheckAuthAndUser.isLogin(req)){
+//
+//
+//            return;
+//        }
+//        if(!CheckAuthAndUser.isHaveAuth(req)){
+//            System.out.print("not equale !!!");
+//
+//            return ;
+//        }
         chain.doFilter(xssHttpServletRequestWrapper,response);
     }
 

@@ -10,8 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.*;
 import java.util.List;
 
 /**
@@ -40,9 +43,11 @@ public class TestController {
 
 
     @RequestMapping("two")
-    public String getindex(Model model){
+    public String getindex(Model model,HttpServletRequest request){
         User user=testService.findById("kk");
         model.addAttribute("user",user);
+        HttpSession session=request.getSession();
+        session.setAttribute("longin","/api/test/two1");
         return "index";
     }
 
@@ -53,6 +58,25 @@ public class TestController {
         List<User> users=testService.findAll();
         PageInfo<User> pageInfo=new PageInfo<>(users);
         return pageInfo;
+    }
+
+
+    @RequestMapping("upload")
+    @ResponseBody
+    public String upload(MultipartFile file) throws Exception{
+        InputStream inputStream=file.getInputStream();
+        BufferedInputStream buf=new BufferedInputStream(inputStream);
+        OutputStream out=new FileOutputStream("D:/ek.xls");
+        byte[] bytes=new byte[1024];
+        int len=0;
+        while ((len=buf.read(bytes,0,len))!=-1){
+            out.write(bytes,0,len);
+        }
+        out.flush();
+        out.close();
+        buf.close();
+        inputStream.close();
+        return "success";
     }
 
 }
