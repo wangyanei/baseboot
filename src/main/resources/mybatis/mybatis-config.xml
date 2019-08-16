@@ -9,7 +9,7 @@
         alias是类的别名
     -->
     <typeAliases>
-        <typeAlias type="com.wondersgroup.api.entity.User" alias="User"/>
+        <typeAlias type="com.wyn.api.entity.User" alias="User"/>
 
     </typeAliases>
 
